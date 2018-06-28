@@ -161,7 +161,7 @@ Order 是用來指定 item 的排序權重，
 
 ![Asign item position 2](./img/008-asign-items-position-2.png)
 
-有法有發現不一樣的地方？說明之前，我們先再看看加入 order 的狀況：
+有沒有發現不一樣的地方？說明之前，我們先再看看加入 order 的狀況：
 
 ```css
 .item-10,
@@ -220,7 +220,7 @@ Order 是用來指定 item 的排序權重，
 
 ![](./img/012-template-param-with-order-2.png)
 
-其實，這邊的 order 不設結果對一樣，因為 絕對位置 > 自然排序。
+其實，這邊的 order 不設結果對是一樣，因為 絕對位置 > 自然排序。
 
 我們再把 item-4 設到 item-1 的位置看看：
 
@@ -235,8 +235,8 @@ Order 是用來指定 item 的排序權重，
 ![](./img/014-template-param-with-order-4.png)
 
 用上面的法則分析一下，item-1 和 item-4 都是絕對位置，所以看權重，但竟然權重較大的 item-1 不旦沒有顯現，item-4 也沒有被擠到後面去……
-這邊得到一個原則：絕對位置的元素不會有排序問題，只與圖層顯示有關，order 的作用相當於 z-index，值越大的越上層。
-但是如果設定 css 的老大哥 z-index 的話，還是「大哥說了算」！！
+這邊得到一個原則：都是絕對位置的元素間不會有排序問題，只與圖層顯示有關，order 的作用相當於 z-index，值越大的越上層。
+但是如果設定 css 的老大哥 z-index 的話，還是「**大哥說了算**」！！
 
 ```css
 .item-1 {
@@ -246,7 +246,7 @@ Order 是用來指定 item 的排序權重，
 
 ![](./img/015-template-param-with-order-5.png)
 
-最後，我們再看一個更極端的例子：
+最後，我們再看一個更極端的例子(有把 item-1 的 z-index 拿掉)：
 
 ```css
 .item-5 {
@@ -267,9 +267,11 @@ Order 是用來指定 item 的排序權重，
 - item-5 覆蓋了 item-1
 - item-4 覆蓋了 item-1，也覆蓋了 item-5，
 
-原因是三個都為絕對位置，所以只以 order 來比顯示圖層的位子。
+原因是三個都為絕對位置，所以只以 order 來比顯示圖層的順序。
 另外，可以看到當 item-5 row 長度超出 container 邊界時，是會一直向右延伸，
 等於把 grid-template-rows 加長，所以原本各列的元素都被補進到第二列，
+細心的您應該也注意到了，item-5 實際上沒有到 30 格，它只延伸到其後所有的元素都補進到第二列後就不再展延了！
+
 還有由於前面 grid-template-rows 只設了 5 個 20%，右邊超出的都變成 auto 了，
 原本應該是等寬的(0)，但都視所含 item 內容而被擴展。
 
