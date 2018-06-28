@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="item item-1">1</div>
+    <div class="item item-2">2</div>
+    <div class="item item-3">3</div>
+    <div class="item item-4">4</div>
+    <div class="item item-5">5</div>
+    <div class="item item-6">6</div>
+    <div class="item item-7">7</div>
+    <div class="item item-8">8</div>
+    <div class="item item-9">9</div>
+    <div class="item item-10">10</div>
+    <div class="item item-11">11</div>
+    <div class="item item-12">12</div>
+    <div class="item item-13">13</div>
+    <div class="item item-14">14</div>
+    <div class="item item-15">15</div>
+    <div class="item item-16">16</div>
+    <div class="item item-17">17</div>
+    <div class="item item-18">18</div>
+    <div class="item item-19">19</div>
+    <div class="item item-20">20</div>
+    <div class="item item-21">21</div>
+    <div class="item item-22">22</div>
+    <div class="item item-23">23</div>
+    <div class="item item-24">24</div>
+    <!-- <div class="item item-25">25</div> -->
+    <!-- <div class="item item-26">26</div> -->
+    <!-- <div class="item item-27">27</div> -->
+  </div>
+
+  <style>
+    *,
+    *::after,
+    *::before {
+      /* box-sizing: border-box; */
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      height: 50vh;
+      width: 50vh;
+      border: 2px solid red;
+
+      display: grid;
+      /* % 是以 container 的長度來分配 */
+      grid-template-columns: 20% 20% 20% 20% 20%;
+      /* 可以用 repeat 來設定重複的格線間距 */
+      /* === 20% 20% 20% 20% 20% */
+      grid-template-rows: repeat(4, 20%) 20%;
+    }
+
+    /* 若無個別指定，item 會依左至右、上至下 依序填補 grid */
+
+    .item {
+      border: 1px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <style>
+    .container {
+      /* 設定格線寬度 */
+      /* 如果 grid-template 沒有 auto/fr 的欄位，則 grid-gap 是額外佔有的空間，
+         即有可能 grid-template * n + grid-gap * (n-1) > container
+      */
+      /* grid-gap: 1%; */
+    }
+  </style>
+  <style>
+    .item-1 {
+      grid-column-start: 4;
+      /* grid-row-start: 4; */
+      grid-column-end: 5;
+      grid-row-start: 1;
+      /* grid-row-end: span 1; */
+      background-color: #e2c;
+    }
+
+    .item-1 {
+      /* 表示選取第4條分隔線當作起點，若無指定 grid-column-end，則表示選取一欄。 */
+      /* 若也沒有指定 grid-row，則表示選取該欄的第一列 */
+      /* 注意：當 item-1 後面的元素(沒有個別指定時)也會從 item-1 之後再依序插入 */
+      /* grid-column-start: 4;
+      background-color: #e2c; */
+    }
+  </style>
+  <style>
+    .item-1 {
+      /* grid-column-start: 3; */
+    }
+
+    .item-2 {
+      /* 藉由個別指定位置，可以讓 item-2 排在 item-1 之前 */
+      /* grid-column-start: 2; */
+      /* grid-row-start: 1; */
+    }
+
+    .item-10,
+    .item-20,
+    .item-21,
+    .item-22 {
+      /* 設定 order 可以指定 item 的順序權重
+         預設值是 0，
+         可設定正負值，
+         越小的權重越大，
+         權重相同則依 html 元素宣告順序
+       */
+      order: -1;
+    }
+
+    .item-5 {
+      /* grid-area: 1/2/2/span 1; */
+      grid-area: 1/2/2/span 30;
+      order: 1000;
+      background-color: blue;
+    }
+
+    .item-4 {
+      /* grid-area: 1/5/2/span 1; */
+      grid-area: 1/4/2/5;
+      order: 2000;
+      background-color: yellow;
+    }
+
+    .item-1 {
+      /* z-index: 1; */
+    }
+  </style>
+</body>
+
+</html>
